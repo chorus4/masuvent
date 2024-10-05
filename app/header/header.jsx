@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import cls from 'classname'
 import logo from '../img/logo.svg'
 import cart from '../img/cart.svg'
+import Link from 'next/link'
 
 const gilroy = localFont({ src: '../fonts/Gilroy-Medium.woff' })
 
@@ -13,10 +14,10 @@ export default function Header() {
     <header className={cls(gilroy.className, styles.header)}>
       <div className={styles.leftSide}>
         <Image className={styles.logo} src={logo} alt={'Logo'} />
-        <a href='' className={cls(styles.link, styles.active)}>Каталог</a>
-        <a href='' className={styles.link}>Инфо</a>
-        <a href='' className={styles.link}>Отзывы</a>
-        <a href='' className={styles.link}>Связь</a>
+        <Link href='' className={cls(styles.link, styles.active)}>Каталог</Link>
+        <Link href='' className={styles.link}>Инфо</Link>
+        <Link href='' className={styles.link}>Отзывы</Link>
+        <Link href='' className={styles.link}>Связь</Link>
       </div>
 
       <div className={styles.rightSide}>
