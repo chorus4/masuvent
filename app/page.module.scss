@@ -2,14 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
   margin-top: 100px;
+  margin-bottom: 85px;
 }
 
 .header {
-    margin: 0;
-    margin-bottom: 20px;
-    font-weight: 400;
-    font-size: 50px;
+  margin: 0;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 50px;
 }
 
 .image {
@@ -38,4 +40,49 @@
   cursor: pointer;
   font-size: 30px;
   font-weight: 200;
+  border: none;
+  border-radius: 5px;
+}
+
+.br {
+  width: 100%;
+  min-width: 100vw;
+  object-fit: cover;
+}
+
+.firstRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 120px;
+
+  & > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.secondRow {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.firstRow,
+.secondRow {
+  .image {
+    width: 300px;
+    height: 300px;
+  }
+
+  .button {
+    padding: 10px 30px;
+    font-size: 15px;
+  }
+
+  .description {
+    font-size: 20px;
+  }
 }
