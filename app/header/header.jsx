@@ -1,17 +1,16 @@
-import styles from './header.module.scss' 
-import Image from 'next/image'
-import localFont from 'next/font/local'
 import cls from 'classname'
-import logo from '../img/logo.svg'
-import cart from '../img/cart.svg'
+import localFont from 'next/font/local'
+import Image from 'next/image'
 import Link from 'next/link'
+import cart from '../img/cart.svg'
 import leftWave from '../img/left-wave.svg'
+import logo from '../img/logo.svg'
 import rightWave from '../img/right-wave.svg'
+import styles from './header.module.scss'
 
 const gilroy = localFont({ src: '../fonts/Gilroy-Medium.woff' })
 
 export default function Header() {
-
   return (
     <header className={cls(gilroy.className, styles.header)}>
       <div className={styles.head}>
@@ -38,8 +37,8 @@ export default function Header() {
       </div>
 
       <div className={styles.waves}>
-        <Image src={leftWave} />
-        <Image src={rightWave} className={styles.second} />
+        <Image src={leftWave} draggable={false} />
+        <Image src={rightWave} className={styles.second} draggable={false} />
       </div>
     </header>
   )
