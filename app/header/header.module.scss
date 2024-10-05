@@ -1,9 +1,27 @@
 .header {
+  color: white;
+}
+
+.head {
   display: flex;
   justify-content: space-between;
   background-color: black;
-  color: white;
   padding: 0 35px;
+  position: relative;
+}
+
+.waves {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  top: 64px;
+}
+
+@media (max-width: 1600px) {
+  .waves {
+    display: none;
+  }
 }
 
 .leftSide {

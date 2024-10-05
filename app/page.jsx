@@ -18,7 +18,7 @@ export default function Home() {
         <h1 className={cls(girassol.className, styles.header)}>NEW DROP AVAILABLE</h1>
         <Image className={styles.image} src={mainHoodie} />
         <p className={cls(gilroy.className, styles.description)}>Hoodie "pathetic bastard"</p>
-        <p className={cls(gilroy.className, styles.price)}>2400 UAH</p>
+        <p className={cls(gilroy.className, styles.price)}>2650 UAH</p>
         <button className={cls(gilroy.className, styles.button)}>More Info</button>
       </div>
     </main>

@@ -5,6 +5,8 @@ import cls from 'classname'
 import logo from '../img/logo.svg'
 import cart from '../img/cart.svg'
 import Link from 'next/link'
+import leftWave from '../img/left-wave.svg'
+import rightWave from '../img/right-wave.svg'
 
 const gilroy = localFont({ src: '../fonts/Gilroy-Medium.woff' })
 
@@ -12,17 +14,32 @@ export default function Header() {
 
   return (
     <header className={cls(gilroy.className, styles.header)}>
-      <div className={styles.leftSide}>
-        <Image className={styles.logo} src={logo} alt={'Logo'} />
-        <Link href='' className={cls(styles.link, styles.active)}>Каталог</Link>
-        <Link href='' className={styles.link}>Инфо</Link>
-        <Link href='' className={styles.link}>Отзывы</Link>
-        <Link href='' className={styles.link}>Связь</Link>
+      <div className={styles.head}>
+        <div className={styles.leftSide}>
+          <Image className={styles.logo} src={logo} alt={'Logo'} />
+          <Link href='' className={cls(styles.link, styles.active)}>
+            Каталог
+          </Link>
+          <Link href='' className={styles.link}>
+            Инфо
+          </Link>
+          <Link href='' className={styles.link}>
+            Отзывы
+          </Link>
+          <Link href='' className={styles.link}>
+            Связь
+          </Link>
+        </div>
+
+        <div className={styles.rightSide}>
+          <h2>UAH</h2>
+          <Image src={cart} alt={'Cart'} />
+        </div>
       </div>
 
-      <div className={styles.rightSide}>
-        <h2>UAH</h2>
-        <Image src={cart} alt={'Cart'} />
+      <div className={styles.waves}>
+        <Image src={leftWave} />
+        <Image src={rightWave} className={styles.second} />
       </div>
     </header>
   )
