@@ -1,7 +1,6 @@
 import cls from 'classname'
 import localFont from 'next/font/local'
 import Image from 'next/image'
-import Link from 'next/link'
 import cart from '../img/cart.svg'
 import leftWave from '../img/left-wave.svg'
 import logo from '../img/logo.svg'
@@ -15,19 +14,21 @@ export default function Header() {
     <header className={cls(gilroy.className, styles.header)}>
       <div className={styles.head}>
         <div className={styles.leftSide}>
-          <Image className={styles.logo} src={logo} alt={'Logo'} />
-          <Link href='' className={cls(styles.link, styles.active)}>
+          <a href={'/'}>
+            <Image className={styles.logo} src={logo} alt={'Logo'} />
+          </a>
+          <a href='' className={cls(styles.link, styles.active)}>
             Каталог
-          </Link>
-          <Link href='' className={styles.link}>
+          </a>
+          <a href='' className={styles.link}>
             Инфо
-          </Link>
-          <Link href='' className={styles.link}>
+          </a>
+          <a href='' className={styles.link}>
             Отзывы
-          </Link>
-          <Link href='' className={styles.link}>
+          </a>
+          <a href='' className={styles.link}>
             Связь
-          </Link>
+          </a>
         </div>
 
         <div className={styles.rightSide}>

@@ -27,7 +27,7 @@ export default function Buy() {
           <label htmlFor='baby'>BABY</label>
 
           <input type='radio' name='size' id='xxl' />
-          <label htmlFor='xxl'>XXL</label>
+          <label htmlFor='xxl'>BIG</label>
         </div>
         <button className={styles.button}>BUY</button>
       </div>

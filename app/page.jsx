@@ -14,8 +14,8 @@ const gilroy = localFont({ src: './fonts/Gilroy-Medium.woff' })
 
 export default function Home() {
   return (
-    <main>
-      <section className={styles.container}>
+    <main className={styles.main}>
+      <a href='/buy' className={styles.container}>
         <h1 className={cls(girassol.className, styles.header)}>
           NEW DROP AVAILABLE
         </h1>
@@ -27,7 +27,7 @@ export default function Home() {
         <button className={cls(gilroy.className, styles.button)}>
           More Info
         </button>
-      </section>
+      </a>
 
       <Image src={br} className={styles.br} />
 
@@ -36,7 +36,7 @@ export default function Home() {
           DROP ALREADY AVAILABLE
         </h1>
         <div className={styles.firstRow}>
-          <div>
+          <a href='/buy'>
             <Image className={styles.image} src={mainHoodie} />
             <p className={cls(gilroy.className, styles.description)}>
               Hoodie "pathetic bastard"
@@ -47,9 +47,9 @@ export default function Home() {
             <button className={cls(gilroy.className, styles.button)}>
               More Info
             </button>
-          </div>
+          </a>
 
-          <div>
+          <a href='/buy'>
             <Image className={styles.image} src={mainHoodie} />
             <p className={cls(gilroy.className, styles.description)}>
               Hoodie "pathetic bastard"
@@ -60,17 +60,21 @@ export default function Home() {
             <button className={cls(gilroy.className, styles.button)}>
               More Info
             </button>
-          </div>
+          </a>
         </div>
         <div className={styles.secondRow}>
-          <Image className={styles.image} src={mainHoodie} />
-          <p className={cls(gilroy.className, styles.description)}>
-            Hoodie "pathetic bastard"
-          </p>
-          <p className={cls(gilroy.className, styles.description)}>2560 UAH</p>
-          <button className={cls(gilroy.className, styles.button)}>
-            More Info
-          </button>
+          <a href='/buy'>
+            <Image className={styles.image} src={mainHoodie} />
+            <p className={cls(gilroy.className, styles.description)}>
+              Hoodie "pathetic bastard"
+            </p>
+            <p className={cls(gilroy.className, styles.description)}>
+              2560 UAH
+            </p>
+            <button className={cls(gilroy.className, styles.button)}>
+              More Info
+            </button>
+          </a>
         </div>
       </section>
     </main>
