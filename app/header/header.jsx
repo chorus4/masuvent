@@ -21,16 +21,16 @@ export default function Header() {
           <a href={'/'}>
             <Image className={styles.logo} src={logo} alt={'Logo'} />
           </a>
-          <a href='' className={cls(styles.link, styles.active)}>
+          <a href='/' className={cls(styles.link, styles.active)}>
             Каталог
           </a>
-          <a href='' className={styles.link}>
+          <a href='/info' className={cls(styles.active, styles.link)}>
             Инфо
           </a>
-          <a href='' className={styles.link}>
+          <a href='/feedback' className={cls(styles.active, styles.link)}>
             Отзывы
           </a>
-          <a href='' className={cls(styles.active, styles.link)}>
+          <a href='/social' className={cls(styles.active, styles.link)}>
             Связь
           </a>
         </div>
