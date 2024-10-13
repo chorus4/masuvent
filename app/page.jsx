@@ -23,7 +23,7 @@ export default function Home() {
         <p className={cls(gilroy.className, styles.description)}>
           Hoodie "pathetic bastard"
         </p>
-        <p className={cls(gilroy.className, styles.price)}>2650 UAH</p>
+        <p className={cls(gilroy.className, styles.price)}>2775 UAH</p>
         <button className={cls(gilroy.className, styles.button)}>
           More Info
         </button>
@@ -42,7 +42,7 @@ export default function Home() {
               Hoodie "pathetic bastard"
             </p>
             <p className={cls(gilroy.className, styles.description)}>
-              2560 UAH
+              2775 UAH
             </p>
             <button className={cls(gilroy.className, styles.button)}>
               More Info
@@ -55,27 +55,25 @@ export default function Home() {
               Hoodie "pathetic bastard"
             </p>
             <p className={cls(gilroy.className, styles.description)}>
-              2560 UAH
+              2775 UAH
             </p>
             <button className={cls(gilroy.className, styles.button)}>
               More Info
             </button>
           </a>
         </div>
-        <div className={styles.secondRow}>
-          <a href='/buy'>
+        <a href='/buy' className={styles.secondRow}>
             <Image className={styles.image} src={mainHoodie} />
             <p className={cls(gilroy.className, styles.description)}>
               Hoodie "pathetic bastard"
             </p>
             <p className={cls(gilroy.className, styles.description)}>
-              2560 UAH
+              2775 UAH
             </p>
             <button className={cls(gilroy.className, styles.button)}>
               More Info
             </button>
-          </a>
-        </div>
+        </a>
       </section>
     </main>
   )

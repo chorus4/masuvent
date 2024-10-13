@@ -6,3 +6,34 @@ footer {
   color: white;
   // background-color: black;
 }
+
+.modal.entering {
+  animation: modal 0.5s;
+}
+
+// .modal.entered {
+
+// }
+
+.modal.exiting {
+  animation: modal 0.5s reverse;
+}
+
+.modal.exited {
+  opacity: 0;
+  display: none;
+}
+
+@keyframes modal {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#error {
+  border-color: #a61c10;
+}
