@@ -1,11 +1,15 @@
 'use client'
 
+import axios from 'axios'
 import cls from 'classname'
 import localFont from 'next/font/local'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Transition } from 'react-transition-group'
+import Cart from '../cart/Cart'
+import { API_URL } from '../config'
+import cross from '../img/cross.svg'
 import mainHoodie from '../img/mainhoodie.png'
 import miniHoodie from '../img/mini-hoodie.svg'
 import styles from './buy.module.scss'
@@ -15,18 +19,30 @@ const gilroy = localFont({ src: '../fonts/Gilroy-Medium.woff' })
 
 export default function Buy() {
   const [isModal, setIsModal] = useState(false)
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, watch } = useForm({
     defaultValues: {
-      size: 'baby',
+      size: 'BABY',
     },
   })
-  const emailError = formState.errors['email']?.message != undefined
+  const [isError, setIsError] = useState(false)
+  const deliveryType = watch('deliveryType')
 
-
-  console.log(formState.errors.email);
-
-  const onSubmit = s => {
-    console.log(s)
+  const onSubmit = async s => {
+    try {
+      const resp = await axios.post(
+        `${API_URL}/payment/createPayment`,
+        {
+          ...s,
+          country: deliveryType !== 'europe' ? 'Украина' : s.country,
+        },
+        {
+          fetchOptions: {},
+        }
+      )
+      window.location.href = resp.data.pageUrl
+    } catch {
+      setIsError(true)
+    }
   }
 
   const closeModal = () => {
@@ -36,6 +52,7 @@ export default function Buy() {
 
   return (
     <main className={cls(gilroy.className, styles.main)}>
+      <Cart />
       <Image src={mainHoodie} className={styles.image} />
 
       <div className={styles.rightSection}>
@@ -56,7 +73,7 @@ export default function Buy() {
             type='radio'
             name='size'
             id='baby'
-            value={'baby'}
+            value={'BABY'}
             {...register('size')}
           />
           <label htmlFor='baby'>BABY</label>
@@ -65,7 +82,7 @@ export default function Buy() {
             type='radio'
             name='size'
             id='xxl'
-            value={'xxl'}
+            value={'BIG'}
             {...register('size')}
           />
           <label htmlFor='xxl'>BIG</label>
@@ -85,11 +102,18 @@ export default function Buy() {
               className={styles.modalContent}
               onClick={e => e.stopPropagation()}
             >
+              <Image
+                src={cross}
+                className={styles.cross}
+                onClick={closeModal}
+              />
               <div className={styles.info}>
                 <Image src={miniHoodie} className={styles.modalImage} />
                 <p>
                   <span>Hoodie pathetic bastard</span>
-                  <span className={styles.modalSize}>Size</span>
+                  <span className={styles.modalSize}>
+                    Size: {watch('size')}
+                  </span>
                 </p>
                 <h2 className={styles.modalPrice}>2400 UAH</h2>
               </div>
@@ -121,7 +145,7 @@ export default function Buy() {
                 })}
               />
 
-              <label>Адрес</label>
+              <label>Адрес/Отделение НП</label>
               <input
                 className={gilroy.className}
                 type='text'
@@ -147,6 +171,44 @@ export default function Buy() {
                 })}
               />
 
+              <label>Тип доставки</label>
+              <select {...register('deliveryType')}>
+                <option value='ukraine' defaultChecked>
+                  По Украине
+                </option>
+                <option value='europe'>Международная доставка</option>
+              </select>
+
+              {/* {deliveryType == 'europe' && (
+                <>
+                  <label>Страна доставки</label>
+                  <input
+                    type='text'
+                    {...register('country')}
+                    placeholder='Германия'
+                  />
+                </>
+              )} */}
+
+              <label
+                className={cls({
+                  [styles.labelDisabled]: deliveryType !== 'europe',
+                })}
+              >
+                Страна доставки
+              </label>
+              <input
+                type='text'
+                id={cls({
+                  error: formState.errors['country']?.message != undefined,
+                })}
+                {...register('country', {
+                  required: deliveryType == 'europe',
+                })}
+                placeholder='Германия'
+                disabled={deliveryType !== 'europe'}
+              />
+
               <label>Обратная связь</label>
               <input
                 className={gilroy.className}
@@ -156,6 +218,19 @@ export default function Buy() {
                 })}
                 placeholder='Ваш телеграм, или номер'
                 {...register('feedback', {
+                  required: true,
+                })}
+              />
+
+              <label>Номер телефона</label>
+              <input
+                className={gilroy.className}
+                type='text'
+                id={cls({
+                  error: formState.errors['phone']?.message != undefined,
+                })}
+                placeholder='+380123456789'
+                {...register('phone', {
                   required: true,
                 })}
               />
@@ -174,7 +249,9 @@ export default function Buy() {
                   name='payment'
                   id='card'
                   value={'card'}
-                  {...register('payment')}
+                  {...register('paymentType', {
+                    required: true,
+                  })}
                 />
                 <span>Оплата картой</span>
               </label>
@@ -184,7 +261,9 @@ export default function Buy() {
                   name='payment'
                   id='pay'
                   value={'card'}
-                  {...register('payment')}
+                  {...register('paymentType', {
+                    required: true,
+                  })}
                 />
                 <span>Apple pay/Google pay</span>
               </label>
@@ -194,10 +273,18 @@ export default function Buy() {
                   name='payment'
                   id='nalozh'
                   value={'nalozh'}
-                  {...register('payment')}
+                  {...register('paymentType', {
+                    required: true,
+                  })}
                 />
                 <span>Наложеный платеж</span>
               </label>
+
+              {isError && (
+                <span className={styles.error}>
+                  Произошла ошибка, повторите попытку позже
+                </span>
+              )}
 
               <button
                 className={styles.modalButton}

@@ -10,6 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='ru'>
+      <head>
+        {/* <meta name='viewport' content='width=100vw, initial-scale=1.0' /> */}
+      </head>
       <body>
         <Header />
         {children}

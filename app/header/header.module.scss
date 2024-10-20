@@ -72,3 +72,15 @@
 .cart {
     cursor: pointer;
 }
+
+@media (max-width: 700px) {
+  .link {
+    display: none;
+  }
+
+  .rightSide {
+    h2 {
+      display: none;
+    }
+  }
+}

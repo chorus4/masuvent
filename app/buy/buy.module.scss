@@ -85,7 +85,7 @@
 // Modal
 
 .modal {
-  position: fixed;
+  position: absolute;
 
   top: 0;
   left: 0;
@@ -108,6 +108,7 @@
 .modalContent {
   padding: 30px 65px;
   border-radius: 30px;
+  margin-top: 300px;
 
   background-color: #000000;
   border: solid 2px #404040;
@@ -115,7 +116,10 @@
   display: flex;
   flex-direction: column;
 
-  input[type='text'] {
+  position: relative;
+
+  input[type='text'],
+  select {
     padding: 15px;
     margin-bottom: 15px;
     margin-top: 5px;
@@ -129,10 +133,19 @@
 
     transition: all 0.2s;
 
-    &:focus {
-      border: solid 2px #707070;
-      padding: 20px;
+    &:disabled {
+      border-color: #202020;
+      color: #202020;
     }
+  }
+
+  select {
+    background-color: black;
+  }
+
+  input[type='text']:focus {
+    border: solid 2px #707070;
+    padding: 20px;
   }
 
   input[type='radio'] {
@@ -210,4 +223,42 @@
 
 .paymentLabel {
   margin-bottom: 5px;
+}
+
+.error {
+  color: #a61c10;
+  align-self: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+@media (max-width: 1350px) {
+  .main {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  .image {
+    width: 300px;
+    height: 300px;
+  }
+
+  .modalContent {
+    margin-top: 450px;
+  }
+}
+
+.labelDisabled {
+  color: #303030;
+  transition: all 0.2s;
+}
+
+.cross {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  cursor: pointer;
 }

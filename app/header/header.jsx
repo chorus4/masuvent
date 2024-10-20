@@ -8,6 +8,7 @@ import leftWave from '../img/left-wave.svg'
 import logo from '../img/logo.svg'
 import rightWave from '../img/right-wave.svg'
 import styles from './header.module.scss'
+import { useRouter } from 'next/navigation'
 
 const gilroy = localFont({ src: '../fonts/Gilroy-Medium.woff' })
 

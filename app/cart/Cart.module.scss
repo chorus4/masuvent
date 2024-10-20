@@ -1,0 +1,31 @@
+.modal {
+  position: absolute;
+  color: white;
+  // opacity: 0;
+}
+
+.modalEnterActive {
+  animation: opacity 0.5s;
+}
+
+.modalEnterDone {
+  // opacity: 1;
+}
+
+.modalExitActive {
+  animation: opacity 0.5s reverse;
+}
+
+.modalExitDone {
+  opacity: 0;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
