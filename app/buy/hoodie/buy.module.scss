@@ -34,7 +34,8 @@
   }
 }
 
-.size {
+.size,
+.color {
   display: flex;
   justify-content: space-between;
   gap: 45px;
@@ -64,6 +65,10 @@
   }
 }
 
+.color {
+  gap: 30px;
+}
+
 .button {
   border: none;
   background: transparent;
@@ -79,6 +84,12 @@
     color: #a61c10;
     // text-shadow: 0px 0px 5px 5px #7811074d;
     text-shadow: 0px 0px 25px #781107;
+  }
+
+  &:disabled {
+    color: grey;
+    cursor: not-allowed;
+    font-size: 30px;
   }
 }
 

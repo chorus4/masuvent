@@ -7,13 +7,11 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Transition } from 'react-transition-group'
-import Cart from '../cart/Cart'
 import { API_URL } from '../config'
 import cross from '../img/cross.svg'
-import mainHoodie from '../img/mainhoodie.png'
 import miniHoodie from '../img/mini-hoodie.svg'
-import styles from './buy.module.scss'
 import './buy.scss'
+import styles from './hoodie/buy.module.scss'
 
 const gilroy = localFont({ src: '../fonts/Gilroy-Medium.woff' })
 
@@ -51,47 +49,7 @@ export default function Buy() {
   }
 
   return (
-    <main className={cls(gilroy.className, styles.main)}>
-      <Cart />
-      <Image src={mainHoodie} className={styles.image} />
-
-      <div className={styles.rightSection}>
-        <h2>
-          Hoodie
-          <br /> "pathetic bastard"
-        </h2>
-        <p>
-          <span>Material: японский</span>
-          <span>плюш, оверсайз крой,</span>
-          <span>все принты выполнены</span>
-          <span>качественной вышивкой</span>
-        </p>
-        <div className={styles.size}>
-          <span>SIZE</span>
-
-          <input
-            type='radio'
-            name='size'
-            id='baby'
-            value={'BABY'}
-            {...register('size')}
-          />
-          <label htmlFor='baby'>BABY</label>
-
-          <input
-            type='radio'
-            name='size'
-            id='xxl'
-            value={'BIG'}
-            {...register('size')}
-          />
-          <label htmlFor='xxl'>BIG</label>
-        </div>
-        <button className={styles.button} onClick={() => setIsModal(true)}>
-          BUY
-        </button>
-      </div>
-
+    <main>
       <Transition in={isModal} timeout={500}>
         {state => (
           <div
