@@ -12,16 +12,15 @@ import styles from './buy.module.scss'
 const gilroy = localFont({ src: '../../fonts/Gilroy-Medium.woff' })
 
 export default function Hoodie() {
-  const productId = 'HOODIE'
   const { register, handleSubmit, watch } = useForm({
     defaultValues: {
       size: 'BABY',
       color: 'BLACK',
+      type: 'hoodie',
     },
   })
   const form = watch()
-  console.log(form)
-  const { cart, setCart, isBought, submit } = useCart()
+  const { submit } = useCart()
 
   return (
     <main className={cls(gilroy.className, styles.main)}>
@@ -84,11 +83,12 @@ export default function Hoodie() {
         <button
           className={styles.button}
           onClick={handleSubmit(submit)}
-          disabled={isBought(form)}
+          // disabled={getAmount(form) > 5}
         >
-          {isBought(form) && <span>Уже добавлено в корзину</span>}
-
-          {!isBought(form) && <span>BUY</span>}
+          {/* {isBought(form) && <span>Уже добавлено в корзину</span>} */}
+          {/* {!isBought(form) && <span>BUY</span>} */}
+          BUY
+          {/* {getAmount(form) && <>({getAmount(form)})</>} */}
         </button>
       </div>
     </main>

@@ -4,6 +4,7 @@ import cls from 'classname'
 import localFont from 'next/font/local'
 import Image from 'next/image'
 import { useState } from 'react'
+import { useCart } from '../hooks/useCart'
 import leftWave from '../img/left-wave.svg'
 import logo from '../img/logo.svg'
 import rightWave from '../img/right-wave.svg'
@@ -13,6 +14,7 @@ const gilroy = localFont({ src: '../fonts/Gilroy-Medium.woff' })
 
 export default function Header() {
   const [isHovered, setIsHovered] = useState(false)
+  const { allCount } = useCart()
 
   return (
     <header className={cls(gilroy.className, styles.header)}>
@@ -37,24 +39,15 @@ export default function Header() {
 
         <div className={styles.rightSide}>
           <h2>UAH</h2>
-          {!isHovered && (
-            <span
-              onMouseOver={() => setIsHovered(true)}
-              onMouseOut={() => setIsHovered(false)}
-              className={styles.cart}
-            >
-              <Cart />
-            </span>
-          )}
-          {isHovered && (
-            <span
-              onMouseOver={() => setIsHovered(true)}
-              onMouseOut={() => setIsHovered(false)}
-              className={styles.cart}
-            >
-              <RedCart />
-            </span>
-          )}
+          <span
+            className={styles.cart}
+            onMouseOver={() => setIsHovered(true)}
+            onMouseOut={() => setIsHovered(false)}
+          >
+            {!isHovered && <Cart />}
+            {isHovered && <RedCart />}
+            <span>{allCount}</span>
+          </span>
         </div>
       </div>
 

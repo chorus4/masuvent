@@ -1,16 +1,29 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useLocalStorage } from './useLocalStorage'
 
 export function useCart() {
-  const { value, setValue } = useLocalStorage('cart', [])
+  const [cart, setCart] = useLocalStorage('cart', [])
+  const [allCount, setAllCount] = useState(0)
 
   const submit = data => {
-    if (value.find(e => e.color == data.color && e.size == data.size)) {
+    if (
+      cart.find(
+        e => e.color == data.color && e.size == data.size && e.type == data.type
+      )
+    ) {
+      let vv = [...cart]
+      vv[
+        cart.findIndex(
+          e =>
+            e.color == data.color && e.size == data.size && e.type == data.type
+        )
+      ].count++
+      setCart(vv)
       return
     }
 
-    setValue([
-      ...value,
+    setCart([
+      ...cart,
       {
         ...data,
         count: 1,
@@ -18,22 +31,100 @@ export function useCart() {
     ])
   }
 
-  const isBought = useCallback(
-    product => {
-      console.log(value, 'e')
-      console.log(product, 'or')
-      if (!value) return
-      if (
-        value.find(e => {
-          console.log(e.color == product.color && e.size == product.size, 'tre')
-          return e.color == product.color && e.size == product.size
-        })
-      )
-        return true
-      return false
-    },
-    [value]
-  )
+  const isBought = useCallback(product => {
+    if (!cart) return
+    if (
+      cart.find(e => {
+        return (
+          e.color == product.color &&
+          e.size == product.size &&
+          e.type == product.type
+        )
+      })
+    )
+      return true
+    return false
+  }, [])
 
-  return { cart: value, setCart: setValue, submit, isBought }
+  const getAmount = useCallback(product => {
+    if (!cart) return
+    const count =
+      cart[
+        cart.findIndex(
+          e =>
+            e.color == product.color &&
+            e.size == product.size &&
+            e.type == product.type
+        )
+      ]?.count
+    return count
+  }, [])
+
+  const increase = item => {
+    if (
+      cart.find(
+        e => e.color == item.color && e.size == item.size && e.type == item.type
+      )
+    ) {
+      let vv = [...cart]
+      vv[
+        cart.findIndex(
+          e =>
+            e.color == item.color && e.size == item.size && e.type == item.type
+        )
+      ].count++
+      setCart(vv)
+      return
+    }
+  }
+
+  const decrease = item => {
+    if (
+      cart.find(
+        e => e.color == item.color && e.size == item.size && e.type == item.type
+      )
+    ) {
+      let vv = [...cart]
+      vv[
+        cart.findIndex(
+          e =>
+            e.color == item.color && e.size == item.size && e.type == item.type
+        )
+      ].count--
+      setCart(vv)
+      return
+    }
+  }
+
+  useEffect(() => {
+    console.log('alwdawdawdadawd')
+    if (!cart) return
+    const counts = cart.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.count,
+      0
+    )
+    setAllCount(counts)
+  }, [cart])
+
+  const getAllCount = useCallback(() => {
+    if (!cart) return
+    const counts = cart.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.count,
+      0
+    )
+    console.log(allCount)
+    return allCount
+  }, [])
+
+  return {
+    cart,
+    setCart,
+    submit,
+    isBought,
+    getAmount,
+    allCount,
+    getAllCount,
+    increase,
+    decrease,
+  }
 }

@@ -1,6 +1,7 @@
 import Footer from './footer/footer'
 import './globals.css'
 import Header from './header/header'
+import Layoutt from './Layoutt'
 
 export const metadata = {
   title: 'MASUVENT',
@@ -14,9 +15,11 @@ export default function RootLayout({ children }) {
         {/* <meta name='viewport' content='width=100vw, initial-scale=1.0' /> */}
       </head>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <Layoutt>
+          <Header />
+          {children}
+          <Footer />
+        </Layoutt>
       </body>
     </html>
   )
