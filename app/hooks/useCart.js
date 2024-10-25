@@ -85,6 +85,30 @@ export function useCart() {
       )
     ) {
       let vv = [...cart]
+
+      if (
+        vv[
+          cart.findIndex(
+            e =>
+              e.color == item.color &&
+              e.size == item.size &&
+              e.type == item.type
+          )
+        ].count < 2
+      ) {
+        vv.splice(
+          cart.findIndex(
+            e =>
+              e.color == item.color &&
+              e.size == item.size &&
+              e.type == item.type
+          ),
+          1
+        )
+
+        setCart(vv)
+        return
+      }
       vv[
         cart.findIndex(
           e =>
@@ -96,8 +120,27 @@ export function useCart() {
     }
   }
 
+  const deleteItem = item => {
+    if (
+      cart.find(
+        e => e.color == item.color && e.size == item.size && e.type == item.type
+      )
+    ) {
+      let vv = [...cart]
+
+      vv.splice(
+        cart.findIndex(
+          e =>
+            e.color == item.color && e.size == item.size && e.type == item.type
+        ),
+        1
+      )
+
+      setCart(vv)
+    }
+  }
+
   useEffect(() => {
-    console.log('alwdawdawdadawd')
     if (!cart) return
     const counts = cart.reduce(
       (accumulator, currentValue) => accumulator + currentValue.count,
@@ -126,5 +169,6 @@ export function useCart() {
     getAllCount,
     increase,
     decrease,
+    deleteItem,
   }
 }

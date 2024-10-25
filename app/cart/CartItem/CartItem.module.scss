@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+}
+
+.cross {
+  width: 30px;
+  height: 30px;
+
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+}
+
+.button {
+  background: none;
+  color: white;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  // height: 20px;
+  text-align: center;
+}

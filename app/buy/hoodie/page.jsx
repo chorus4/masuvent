@@ -1,6 +1,5 @@
 'use client'
 
-import Cart from '@/app/cart/Cart'
 import { useCart } from '@/app/hooks/useCart'
 import cls from 'classname'
 import localFont from 'next/font/local'
@@ -24,7 +23,6 @@ export default function Hoodie() {
 
   return (
     <main className={cls(gilroy.className, styles.main)}>
-      <Cart />
       <Image src={mainHoodie} className={styles.image} />
 
       <div className={styles.rightSection}>

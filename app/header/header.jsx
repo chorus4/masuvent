@@ -3,7 +3,10 @@
 import cls from 'classname'
 import localFont from 'next/font/local'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CSSTransition } from 'react-transition-group'
+import Cart from '../cart/Cart'
+import { CartContext } from '../contexts/Cart/cartContext'
 import { useCart } from '../hooks/useCart'
 import leftWave from '../img/left-wave.svg'
 import logo from '../img/logo.svg'
@@ -14,10 +17,12 @@ const gilroy = localFont({ src: '../fonts/Gilroy-Medium.woff' })
 
 export default function Header() {
   const [isHovered, setIsHovered] = useState(false)
+  const { setIsCartActive } = useContext(CartContext)
   const { allCount } = useCart()
 
   return (
     <header className={cls(gilroy.className, styles.header)}>
+      <Cart />
       <div className={styles.head}>
         <div className={styles.leftSide}>
           <a href={'/'}>
@@ -43,10 +48,26 @@ export default function Header() {
             className={styles.cart}
             onMouseOver={() => setIsHovered(true)}
             onMouseOut={() => setIsHovered(false)}
+            onClick={e => {
+              e.stopPropagation()
+              setIsCartActive(lastValue => !lastValue)
+            }}
           >
-            {!isHovered && <Cart />}
+            {!isHovered && <CartSvg />}
             {isHovered && <RedCart />}
-            <span>{allCount}</span>
+            <CSSTransition
+              in={allCount > 0}
+              timeout={500}
+              classNames={{
+                enterActive: styles.cartEnterActive,
+                // enterDone: styles.cartEnterDone,
+                exitActive: styles.cartExitActive,
+                exitDone: styles.cartExitDone,
+              }}
+              unmountOnExit
+            >
+              <span className={styles.allCount}>{Math.max(allCount, 1)}</span>
+            </CSSTransition>
           </span>
         </div>
       </div>
@@ -106,7 +127,7 @@ function RedCart() {
   )
 }
 
-function Cart() {
+function CartSvg() {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

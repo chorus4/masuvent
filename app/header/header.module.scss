@@ -36,25 +36,24 @@
   gap: 25px;
 }
 
-
 .link {
   color: rgba(255, 255, 255, 0.45);
   text-decoration: none;
   position: relative;
 
   transition: all 0.1s;
-  
+
   &::after {
     content: '';
     position: absolute;
     left: 25%;
     bottom: -5px;
-    
+
     background-color: rgba(255, 255, 255, 0.45);
     width: 50%;
     height: 0.1em;
     border-radius: 15%;
-    
+
     transition: all 0.1s;
   }
 
@@ -70,7 +69,23 @@
 }
 
 .cart {
-    cursor: pointer;
+  cursor: pointer;
+  position: relative;
+}
+
+.allCount {
+  position: absolute;
+  background-color: #781107;
+
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+
+  bottom: 0px;
+  right: -15px;
+
+  text-align: center;
+  z-index: 1;
 }
 
 @media (max-width: 700px) {
@@ -82,5 +97,27 @@
     h2 {
       display: none;
     }
+  }
+}
+
+.cartEnterActive {
+  animation: opacity 0.5s;
+}
+
+.cartExitActive {
+  animation: opacity 0.5s reverse;
+}
+
+.cartExitDone {
+  opacity: 0;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
   }
 }

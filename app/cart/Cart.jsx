@@ -1,14 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
+import { CartContext } from '../contexts/Cart/cartContext'
 import { useCart } from '../hooks/useCart'
 import styles from './Cart.module.scss'
 import CartItem from './CartItem/CartItem'
 
 export default function Cart() {
-  const [isActive, setIsActive] = useState(true)
-  const { cart, setCart } = useCart()
+  const { isCartActive } = useContext(CartContext)
+  const { cart } = useCart()
 
   useEffect(() => {
     console.log(cart, 'cartix')
@@ -16,8 +17,8 @@ export default function Cart() {
 
   return (
     <CSSTransition
-      in={isActive}
-      timeout={500}
+      in={isCartActive}
+      timeout={400}
       classNames={{
         enterActive: styles.modalEnterActive,
         enterDone: styles.modalEnterDone,
@@ -26,9 +27,10 @@ export default function Cart() {
       }}
       unmountOnExit
     >
-      <div className={styles.modal}>
+      <div className={styles.modal} onClick={e => e.stopPropagation()}>
+        {cart?.length < 1 && <p>Корзина пуста (</p>}
         {cart?.map(item => (
-          <CartItem item={item} />
+          <CartItem item={item} key={JSON.stringify(item)} />
         ))}
       </div>
     </CSSTransition>
