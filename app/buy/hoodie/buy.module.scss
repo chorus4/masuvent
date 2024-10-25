@@ -12,6 +12,33 @@
 .image {
   width: 500px;
   height: 500px;
+
+  // transition: all 0.2s;
+}
+
+.imageEnterActive {
+  animation: opacity 0.5s;
+}
+
+.imageEnterDone {
+}
+
+.imageExitActive {
+  animation: opacity 0.5s reverse;
+}
+
+.imageExitDone {
+  opacity: 0;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
 }
 
 .rightSection {

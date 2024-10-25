@@ -5,7 +5,9 @@ import cls from 'classname'
 import localFont from 'next/font/local'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
+import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import mainHoodie from '../../img/mainhoodie.png'
+import whiteHoodie from '../../img/whiteHoodie.png'
 import styles from './buy.module.scss'
 
 const gilroy = localFont({ src: '../../fonts/Gilroy-Medium.woff' })
@@ -23,7 +25,23 @@ export default function Hoodie() {
 
   return (
     <main className={cls(gilroy.className, styles.main)}>
-      <Image src={mainHoodie} className={styles.image} />
+      <SwitchTransition mode='out-in'>
+        <CSSTransition
+          key={form.color == 'BLACK'}
+          timeout={400}
+          classNames={{
+            enterActive: styles.imageEnterActive,
+            enterDone: styles.imageEnterDone,
+            exitActive: styles.imageExitActive,
+            exitDone: styles.imageExitDone,
+          }}
+        >
+          <Image
+            src={form.color == 'BLACK' ? mainHoodie : whiteHoodie}
+            className={styles.image}
+          />
+        </CSSTransition>
+      </SwitchTransition>
 
       <div className={styles.rightSection}>
         <h2>
