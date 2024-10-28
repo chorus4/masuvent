@@ -9,21 +9,15 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import styles from './buy.module.scss'
 
 import { useState } from 'react'
-import BlackHoodieBack from '../../img/hoodie/BlackHoodieBack.png'
-import BlackHoodieFront from '../../img/hoodie/BlackHoodieFront.png'
-import WhiteHoodieBack from '../../img/hoodie/WhiteHoodieBack.png'
-import WhiteHoodieFront from '../../img/hoodie/WhiteHoodieFront.png'
+import ZipBack from '../../img/zip/Back.png'
+import ZipFront from '../../img/zip/Front.png'
 
 const gilroy = localFont({ src: '../../fonts/Gilroy-Medium.woff' })
 
 const images = {
-  white: {
-    front: WhiteHoodieFront,
-    back: WhiteHoodieBack,
-  },
   black: {
-    front: BlackHoodieFront,
-    back: BlackHoodieBack,
+    front: ZipFront,
+    back: ZipBack,
   },
 }
 
@@ -32,7 +26,7 @@ export default function Hoodie() {
     defaultValues: {
       size: 'BABY',
       color: 'BLACK',
-      type: 'hoodie',
+      type: 'zip',
     },
   })
   const form = watch()
@@ -43,12 +37,7 @@ export default function Hoodie() {
     <main className={cls(gilroy.className, styles.main)}>
       <SwitchTransition mode='out-in'>
         <CSSTransition
-          key={
-            (isPictureHovered
-              ? (form.color == 'BLACK' ? images.black : images.white).front
-              : (form.color == 'BLACK' ? images.black : images.white).back
-            ).src
-          }
+          key={(isPictureHovered ? images.black.back : images.black.front).src}
           timeout={400}
           classNames={{
             enterActive: styles.imageEnterActive,
@@ -58,11 +47,7 @@ export default function Hoodie() {
           }}
         >
           <Image
-            src={
-              isPictureHovered
-                ? (form.color == 'BLACK' ? images.black : images.white).front
-                : (form.color == 'BLACK' ? images.black : images.white).back
-            }
+            src={isPictureHovered ? images.black.back : images.black.front}
             className={styles.image}
             onMouseEnter={() => setIsPictureHovered(true)}
             onMouseLeave={() => setIsPictureHovered(false)}
@@ -102,7 +87,7 @@ export default function Hoodie() {
           />
           <label htmlFor='xxl'>BIG</label>
         </div>
-        <div className={styles.color}>
+        {/* <div className={styles.color}>
           <span>COLOUR</span>
 
           <input
@@ -122,7 +107,7 @@ export default function Hoodie() {
             {...register('color')}
           />
           <label htmlFor='white'>WHITE</label>
-        </div>
+        </div> */}
         <button
           className={styles.button}
           onClick={handleSubmit(submit)}

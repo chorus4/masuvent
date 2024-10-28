@@ -3,6 +3,7 @@ import Image from 'next/image'
 import cross from '../../img/cross.svg'
 import hoodieImg from '../../img/mainhoodie.png'
 import whiteHoodie from '../../img/whiteHoodie.png'
+import ZipImg from '../../img/zip/Front.png'
 import styles from './CartItem.module.scss'
 
 const types = {
@@ -12,6 +13,12 @@ const types = {
     images: {
       BLACK: hoodieImg,
       WHITE: whiteHoodie,
+    },
+  },
+  zip: {
+    name: 'zipka',
+    images: {
+      BLACK: ZipImg,
     },
   },
 }
