@@ -9,33 +9,28 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import styles from './buy.module.scss'
 
 import { useEffect, useState } from 'react'
-import { isBrowser, isMobile } from 'react-device-detect'
-import BlackHoodieBack from '../../img/hoodie/BlackHoodieBack.png'
-import BlackHoodieFront from '../../img/hoodie/BlackHoodieFront.png'
-import WhiteHoodieBack from '../../img/hoodie/WhiteHoodieBack.png'
-import WhiteHoodieFront from '../../img/hoodie/WhiteHoodieFront.png'
-import mainHoodie from '../../img/hoodie/mainhoodie.png'
-import whiteHoodie from '../../img/hoodie/whiteHoodie.png'
+import { isMobile } from 'react-device-detect'
+import pants from '../../img/pants/pants.png'
 
 const gilroy = localFont({ src: '../../fonts/Gilroy-Medium.woff' })
 
-const images = {
-  white: {
-    front: WhiteHoodieFront,
-    back: WhiteHoodieBack,
-  },
-  black: {
-    front: BlackHoodieFront,
-    back: BlackHoodieBack,
-  },
-}
+// const images = {
+//   white: {
+//     front: WhiteHoodieFront,
+//     back: WhiteHoodieBack,
+//   },
+//   black: {
+//     front: BlackHoodieFront,
+//     back: BlackHoodieBack,
+//   },
+// }
 
 export default function Hoodie() {
   const { register, handleSubmit, watch } = useForm({
     defaultValues: {
-      size: 'BABY',
+      size: 'M',
       color: 'BLACK',
-      type: 'hoodie',
+      type: 'pants',
       price: '2700',
     },
   })
@@ -67,7 +62,7 @@ export default function Hoodie() {
             }}
           >
             <>
-              {isMobile && (
+              {/* {isMobile && (
                 <SwitchTransition mode='out-in'>
                   <CSSTransition
                     key={isPictureHovered}
@@ -97,22 +92,16 @@ export default function Hoodie() {
                     />
                   </CSSTransition>
                 </SwitchTransition>
-              )}
-              {isBrowser && (
-                // <div className={styles.imagesContainer}>
-                <Image
-                  src={form.color == 'BLACK' ? mainHoodie : whiteHoodie}
-                  className={cls(styles.image)}
-                  alt={'Hoodie'}
-                />
-                //   {/* <Image
+              )} */}
+              {/* <div className={styles.imagesContainer}> */}
+              <Image src={pants} className={cls(styles.image)} alt={'Hoodie'} />
+              {/* <Image
                 //     src={
                 //       (form.color == 'BLACK' ? images.black : images.white).back
                 //     }
                 //     className={styles.image}
                 //   /> */}
-                // {/* // </div> */}
-              )}
+              {/* // </div> */}
             </>
           </CSSTransition>
         </SwitchTransition>
@@ -120,14 +109,28 @@ export default function Hoodie() {
 
       <div className={styles.rightSection}>
         <h2>
-          Hoodie
-          <br /> "pathetic bastard"
+          Pants
+          <br /> "fake blood"
         </h2>
-        <p>
-          <span>Material: японский</span>
+        <p className={styles.material}>
+          <span>Материал: Хлопок 100%, 360 плотность,</span>
+          <span>премиальный футер трехнитка с начесом</span>
+          <br />
+
+          {/* <span>Material: японский</span>
           <span>плюш, оверсайз крой,</span>
           <span>все принты выполнены</span>
-          <span>качественной вышивкой</span>
+          <span>качественной вышивкой</span> */}
+        </p>
+
+        <p className={styles.descr}>
+          <span>Штаны широкие (выход 33см), теплые,</span>
+          <span>отлично подойдут на зимний</span>
+          <span>сезон, также есть 2 кармана (спереди).</span>
+          <span>Штаны выполнены с очень</span>
+          <span>качественных и дорогих материалов,</span>
+          <span>так как нам важно чтобы ваша зима</span>
+          <span>прошла в тепле и с комфортом.</span>
         </p>
         <div className={styles.size}>
           <span>SIZE</span>
@@ -136,21 +139,21 @@ export default function Hoodie() {
             type='radio'
             name='size'
             id='baby'
-            value={'BABY'}
+            value={'M'}
             {...register('size')}
           />
-          <label htmlFor='baby'>BABY</label>
+          <label htmlFor='baby'>M</label>
 
           <input
             type='radio'
             name='size'
             id='xxl'
-            value={'BIG'}
+            value={'XL'}
             {...register('size')}
           />
-          <label htmlFor='xxl'>BIG</label>
+          <label htmlFor='xxl'>XL</label>
         </div>
-        <div className={styles.color}>
+        {/* <div className={styles.color}>
           <span>COLOUR</span>
 
           <input
@@ -170,7 +173,7 @@ export default function Hoodie() {
             {...register('color')}
           />
           <label htmlFor='white'>WHITE</label>
-        </div>
+        </div> */}
         <h2>{watch('price')} UAH</h2>
         <button
           className={styles.button}

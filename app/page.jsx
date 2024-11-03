@@ -3,7 +3,7 @@ import { Girassol } from 'next/font/google'
 import localFont from 'next/font/local'
 import Image from 'next/image'
 import br from './img/br.svg'
-import mainHoodie from './img/mainhoodie.png'
+import mainHoodie from './img/hoodie/mainhoodie.png'
 import styles from './page.module.scss'
 
 const girassol = Girassol({
@@ -63,16 +63,14 @@ export default function Home() {
           </a>
         </div>
         <a href='/buy' className={styles.secondRow}>
-            <Image className={styles.image} src={mainHoodie} />
-            <p className={cls(gilroy.className, styles.description)}>
-              Hoodie "pathetic bastard"
-            </p>
-            <p className={cls(gilroy.className, styles.description)}>
-              2775 UAH
-            </p>
-            <button className={cls(gilroy.className, styles.button)}>
-              More Info
-            </button>
+          <Image className={styles.image} src={mainHoodie} />
+          <p className={cls(gilroy.className, styles.description)}>
+            Hoodie "pathetic bastard"
+          </p>
+          <p className={cls(gilroy.className, styles.description)}>2775 UAH</p>
+          <button className={cls(gilroy.className, styles.button)}>
+            More Info
+          </button>
         </a>
       </section>
     </main>

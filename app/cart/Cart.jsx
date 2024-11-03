@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { CartContext } from '../contexts/Cart/cartContext'
 import { useCart } from '../hooks/useCart'
@@ -10,10 +10,6 @@ import CartItem from './CartItem/CartItem'
 export default function Cart() {
   const { isCartActive } = useContext(CartContext)
   const { cart } = useCart()
-
-  useEffect(() => {
-    console.log(cart, 'cartix')
-  }, [cart])
 
   return (
     <CSSTransition
@@ -32,6 +28,8 @@ export default function Cart() {
         {cart?.map(item => (
           <CartItem item={item} key={JSON.stringify(item)} />
         ))}
+
+        {cart?.length > 0 && <a href={'/checkout'}>Checkout</a>}
       </div>
     </CSSTransition>
   )

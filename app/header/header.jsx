@@ -28,7 +28,7 @@ export default function Header() {
           <a href={'/'}>
             <Image className={styles.logo} src={logo} alt={'Logo'} />
           </a>
-          <a href='/' className={cls(styles.link, styles.active)}>
+          {/* <a href='/' className={cls(styles.link, styles.active)}>
             Каталог
           </a>
           <a href='/info' className={cls(styles.active, styles.link)}>
@@ -39,7 +39,7 @@ export default function Header() {
           </a>
           <a href='/social' className={cls(styles.active, styles.link)}>
             Связь
-          </a>
+          </a> */}
         </div>
 
         <div className={styles.rightSide}>

@@ -1,7 +1,8 @@
 import { useCart } from '@/app/hooks/useCart'
 import Image from 'next/image'
 import cross from '../../img/cross.svg'
-import hoodieImg from '../../img/mainhoodie.png'
+import hoodieImg from '../../img/hoodie/mainhoodie.png'
+import PantsImg from '../../img/pants/pants.png'
 import whiteHoodie from '../../img/whiteHoodie.png'
 import ZipImg from '../../img/zip/Front.png'
 import styles from './CartItem.module.scss'
@@ -16,9 +17,15 @@ const types = {
     },
   },
   zip: {
-    name: 'zipka',
+    name: 'Zip "promised weaknesses"',
     images: {
       BLACK: ZipImg,
+    },
+  },
+  pants: {
+    name: 'Pants "fake blood"',
+    images: {
+      BLACK: PantsImg,
     },
   },
 }
@@ -34,6 +41,7 @@ const CartItem = ({ item }) => {
       />
       <div className={styles.row}>
         <span>{types[item.type].name}</span>
+        <span>Size: {item.size}</span>
         <span className={styles.count}>
           <button onClick={() => decrease(item)} className={styles.button}>
             -
@@ -48,6 +56,7 @@ const CartItem = ({ item }) => {
         src={cross}
         className={styles.cross}
         onClick={() => deleteItem(item)}
+        alt={'product'}
       />
     </div>
   )
