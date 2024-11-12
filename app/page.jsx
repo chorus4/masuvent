@@ -4,6 +4,9 @@ import localFont from 'next/font/local'
 import Image from 'next/image'
 import br from './img/br.svg'
 import mainHoodie from './img/hoodie/mainhoodie.png'
+import Pants from './img/pants/pants.png'
+import PatchedHoodie from './img/patchedHoodie/PatchedHoodie.png'
+import Zip from './img/zip/MainZip.png'
 import styles from './page.module.scss'
 
 const girassol = Girassol({
@@ -15,62 +18,64 @@ const gilroy = localFont({ src: './fonts/Gilroy-Medium.woff' })
 export default function Home() {
   return (
     <main className={styles.main}>
-      <a href='/buy' className={styles.container}>
-        <h1 className={cls(girassol.className, styles.header)}>
+      <a
+        href={false ? '/buy/hoodie' : ''}
+        className={styles.container}
+        disabled
+      >
+        {/* <h1 className={cls(girassol.className, styles.header)}>
           NEW DROP AVAILABLE
-        </h1>
+        </h1> */}
         <Image className={styles.image} src={mainHoodie} />
         <p className={cls(gilroy.className, styles.description)}>
           Hoodie "pathetic bastard"
         </p>
         <p className={cls(gilroy.className, styles.price)}>2775 UAH</p>
-        <button className={cls(gilroy.className, styles.button)}>
-          More Info
+        <button className={cls(gilroy.className, styles.button)} disabled>
+          Sold out
         </button>
       </a>
 
       <Image src={br} className={styles.br} />
 
       <section className={styles.container}>
-        <h1 className={cls(girassol.className, styles.header)}>
+        {/* <h1 className={cls(girassol.className, styles.header)}>
           DROP ALREADY AVAILABLE
-        </h1>
+        </h1> */}
         <div className={styles.firstRow}>
-          <a href='/buy'>
-            <Image className={styles.image} src={mainHoodie} />
+          <a href='/buy/zip'>
+            <Image className={styles.image} src={Zip} />
             <p className={cls(gilroy.className, styles.description)}>
-              Hoodie "pathetic bastard"
+              Zip "promised weakness"
             </p>
             <p className={cls(gilroy.className, styles.description)}>
               2775 UAH
             </p>
             <button className={cls(gilroy.className, styles.button)}>
-              More Info
+              Buy
             </button>
           </a>
 
-          <a href='/buy'>
-            <Image className={styles.image} src={mainHoodie} />
+          <a href='/buy/pants'>
+            <Image className={styles.image} src={Pants} />
             <p className={cls(gilroy.className, styles.description)}>
-              Hoodie "pathetic bastard"
+              Pants "fake blood"
             </p>
             <p className={cls(gilroy.className, styles.description)}>
               2775 UAH
             </p>
             <button className={cls(gilroy.className, styles.button)}>
-              More Info
+              Buy
             </button>
           </a>
         </div>
-        <a href='/buy' className={styles.secondRow}>
-          <Image className={styles.image} src={mainHoodie} />
+        <a href='/buy/patchedHoodie' className={styles.secondRow}>
+          <Image className={styles.image} src={PatchedHoodie} />
           <p className={cls(gilroy.className, styles.description)}>
-            Hoodie "pathetic bastard"
+            Patched Hoodie "promised weakness"
           </p>
           <p className={cls(gilroy.className, styles.description)}>2775 UAH</p>
-          <button className={cls(gilroy.className, styles.button)}>
-            More Info
-          </button>
+          <button className={cls(gilroy.className, styles.button)}>Buy</button>
         </a>
       </section>
     </main>

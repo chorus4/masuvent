@@ -140,6 +140,11 @@ export function useCart() {
     }
   }
 
+  const isEmpty = () => {
+    if (!cart || cart?.length < 1) return true
+    return false
+  }
+
   useEffect(() => {
     if (!cart) return
     const counts = cart.reduce(
@@ -155,7 +160,6 @@ export function useCart() {
       (accumulator, currentValue) => accumulator + currentValue.count,
       0
     )
-    console.log(allCount)
     return allCount
   }, [])
 
@@ -170,5 +174,6 @@ export function useCart() {
     increase,
     decrease,
     deleteItem,
+    isEmpty,
   }
 }

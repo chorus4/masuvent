@@ -1,9 +1,12 @@
 'use client'
 
+import axios from 'axios'
 import cls from 'classname'
 import localFont from 'next/font/local'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { API_URL } from '../config'
+import { useCart } from '../hooks/useCart'
 import styles from './checkout.module.scss'
 import './checkout.scss'
 
@@ -13,21 +16,32 @@ export default function Checkout() {
   const { register, handleSubmit, formState, watch } = useForm()
   const [isError, setIsError] = useState(false)
   const deliveryType = watch('deliveryType')
+  const { cart, isEmpty } = useCart()
 
   const onSubmit = async s => {
     try {
+      const token = localStorage.getItem('token')
+      let object = {
+        ...s,
+        country: deliveryType !== 'inter' ? deliveryType : s.country,
+        products: cart,
+      }
+
+      if (token) {
+        object.token = token
+      }
+
       const resp = await axios.post(
         `${API_URL}/payment/createPayment`,
-        {
-          ...s,
-          country: deliveryType !== 'europe' ? 'Украина' : s.country,
-        },
+        object,
         {
           fetchOptions: {},
         }
       )
-      window.location.href = resp.data.pageUrl
-    } catch {
+
+      if (resp.data.pageUrl) window.location.href = resp.data.pageUrl
+    } catch (e) {
+      console.log(e)
       setIsError(true)
     }
   }
@@ -88,13 +102,84 @@ export default function Checkout() {
           })}
         />
 
-        <label>Тип доставки</label>
+        {/* <label>Тип доставки</label>
         <select {...register('deliveryType')}>
           <option value='ukraine' defaultChecked>
-            По Украине
+            По Украине / 0 UAH
           </option>
-          <option value='europe'>Международная доставка</option>
-        </select>
+          <option value='europe'>Международная доставка / 1250 UAH</option>
+        </select> */}
+
+        <label
+          className={styles.paymentLabel}
+          id={cls({
+            'error-label':
+              formState.errors['deliveryType']?.message != undefined,
+          })}
+        >
+          Тип доставки
+        </label>
+        <label
+          htmlFor='ukraine'
+          className={cls(styles.paymentCard, styles.deliveryTypeLabel)}
+        >
+          <input
+            type='radio'
+            name='deliveryType'
+            id='ukraine'
+            value={'ukraine'}
+            {...register('deliveryType', {
+              required: true,
+            })}
+            className={styles.deliveryTypeInput}
+          />
+          <span>По Украине / 0 UAH</span>
+        </label>
+        <label
+          htmlFor='poland'
+          className={cls(styles.paymentCard, styles.deliveryTypeLabel)}
+        >
+          <input
+            type='radio'
+            name='deliveryType'
+            id='poland'
+            value={'poland'}
+            {...register('deliveryType', {
+              required: true,
+            })}
+          />
+          <span>Польша / 450 UAH</span>
+        </label>
+        <label
+          htmlFor='germany'
+          className={cls(styles.paymentCard, styles.deliveryTypeLabel)}
+        >
+          <input
+            type='radio'
+            name='deliveryType'
+            id='germany'
+            value={'germany'}
+            {...register('deliveryType', {
+              required: true,
+            })}
+          />
+          <span>Германия / 600 UAH</span>
+        </label>
+        <label
+          htmlFor='inter'
+          className={cls(styles.paymentCard, styles.deliveryTypeLabel)}
+        >
+          <input
+            type='radio'
+            name='deliveryType'
+            id='inter'
+            value={'inter'}
+            {...register('deliveryType', {
+              required: true,
+            })}
+          />
+          <span>Международная доставка / 1250 UAH</span>
+        </label>
 
         {/* {deliveryType == 'europe' && (
                 <>
@@ -109,7 +194,7 @@ export default function Checkout() {
 
         <label
           className={cls({
-            [styles.labelDisabled]: deliveryType !== 'europe',
+            [styles.labelDisabled]: deliveryType !== 'inter',
           })}
         >
           Страна доставки
@@ -120,10 +205,10 @@ export default function Checkout() {
             error: formState.errors['country']?.message != undefined,
           })}
           {...register('country', {
-            required: deliveryType == 'europe',
+            required: deliveryType == 'inter',
           })}
-          placeholder='Германия'
-          disabled={deliveryType !== 'europe'}
+          placeholder='Страна доставки'
+          disabled={deliveryType !== 'inter'}
         />
 
         <label>Обратная связь</label>
@@ -155,7 +240,15 @@ export default function Checkout() {
         <label>Промокод</label>
         <input className={gilroy.className} type='text' placeholder='PROMO' />
 
-        <label className={styles.paymentLabel}>Способы оплаты</label>
+        <label
+          className={styles.paymentLabel}
+          id={cls({
+            'error-label':
+              formState.errors['paymentType']?.message != undefined,
+          })}
+        >
+          Способы оплаты
+        </label>
         <label htmlFor='card' className={styles.paymentCard}>
           <input
             type='radio'
@@ -199,7 +292,11 @@ export default function Checkout() {
           </span>
         )}
 
-        <button className={styles.modalButton} onClick={handleSubmit(onSubmit)}>
+        <button
+          className={styles.modalButton}
+          onClick={handleSubmit(onSubmit)}
+          disabled={isEmpty()}
+        >
           Confirm
         </button>
       </div>

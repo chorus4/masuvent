@@ -29,7 +29,11 @@ export default function Cart() {
           <CartItem item={item} key={JSON.stringify(item)} />
         ))}
 
-        {cart?.length > 0 && <a href={'/checkout'}>Checkout</a>}
+        {cart?.length > 0 && (
+          <a href={'/checkout'} className={styles.checkout}>
+            Checkout
+          </a>
+        )}
       </div>
     </CSSTransition>
   )

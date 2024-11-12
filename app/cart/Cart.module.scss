@@ -14,6 +14,24 @@
   flex-direction: column;
 }
 
+.checkout {
+  // margin-top: 10px;
+  padding: 15px;
+  border-radius: 15px;
+  align-self: center;
+
+  background: none;
+  color: white;
+  outline: none;
+  border: solid 2px #404040;
+
+  cursor: pointer;
+
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
 .modalEnterActive {
   animation: opacity 0.5s;
 }

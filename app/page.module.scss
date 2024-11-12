@@ -49,6 +49,10 @@
   font-weight: 200;
   border: none;
   border-radius: 5px;
+
+  &:disabled {
+    color: grey;
+  }
 }
 
 .br {

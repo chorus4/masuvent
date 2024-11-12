@@ -2,8 +2,9 @@ import { useCart } from '@/app/hooks/useCart'
 import Image from 'next/image'
 import cross from '../../img/cross.svg'
 import hoodieImg from '../../img/hoodie/mainhoodie.png'
+import whiteHoodie from '../../img/hoodie/whiteHoodie.png'
 import PantsImg from '../../img/pants/pants.png'
-import whiteHoodie from '../../img/whiteHoodie.png'
+import PatchedHoodie from '../../img/patchedHoodie/PatchedHoodie.png'
 import ZipImg from '../../img/zip/Front.png'
 import styles from './CartItem.module.scss'
 
@@ -17,7 +18,7 @@ const types = {
     },
   },
   zip: {
-    name: 'Zip "promised weaknesses"',
+    name: 'Zip "promised weakness"',
     images: {
       BLACK: ZipImg,
     },
@@ -26,6 +27,12 @@ const types = {
     name: 'Pants "fake blood"',
     images: {
       BLACK: PantsImg,
+    },
+  },
+  patchedHoodie: {
+    name: 'Patched hoodie "promised weakness"',
+    images: {
+      BLACK: PatchedHoodie,
     },
   },
 }
