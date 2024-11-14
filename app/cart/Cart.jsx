@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { CartContext } from '../contexts/Cart/cartContext'
 import { useCart } from '../hooks/useCart'
@@ -10,6 +10,13 @@ import CartItem from './CartItem/CartItem'
 export default function Cart() {
   const { isCartActive } = useContext(CartContext)
   const { cart } = useCart()
+
+  const price = useMemo(() => {
+    return cart?.reduce(
+      (acc, currentValue) => acc + +currentValue.price * currentValue.count,
+      0
+    )
+  }, [cart])
 
   return (
     <CSSTransition
@@ -31,7 +38,7 @@ export default function Cart() {
 
         {cart?.length > 0 && (
           <a href={'/checkout'} className={styles.checkout}>
-            Checkout
+            Checkout {price} UAH
           </a>
         )}
       </div>

@@ -122,6 +122,7 @@ import localFont from 'next/font/local'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
+import prices from '../../prices'
 import styles from './buy.module.scss'
 
 import { useEffect, useState } from 'react'
@@ -145,7 +146,7 @@ export default function Hoodie() {
       size: 'BABY',
       color: 'BLACK',
       type: 'zip',
-      price: '2700',
+      price: prices.zip,
     },
   })
   const form = watch()

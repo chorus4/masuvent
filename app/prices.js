@@ -1,6 +1,8 @@
-export const prices = {
+const prices = {
   hoodie: 2695,
-  pants: 2700,
-  zip: 2700,
-  patchedHoodie: 2700,
+  pants: 2701,
+  zip: 2702,
+  patchedHoodie: 2703,
 }
+
+export default prices

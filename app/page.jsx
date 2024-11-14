@@ -8,6 +8,7 @@ import Pants from './img/pants/pants.png'
 import PatchedHoodie from './img/patchedHoodie/PatchedHoodie.png'
 import Zip from './img/zip/MainZip.png'
 import styles from './page.module.scss'
+import prices from './prices'
 
 const girassol = Girassol({
   subsets: ['latin'],
@@ -30,7 +31,9 @@ export default function Home() {
         <p className={cls(gilroy.className, styles.description)}>
           Hoodie "pathetic bastard"
         </p>
-        <p className={cls(gilroy.className, styles.price)}>2775 UAH</p>
+        <p className={cls(gilroy.className, styles.price)}>
+          {prices.hoodie} UAH
+        </p>
         <button className={cls(gilroy.className, styles.button)} disabled>
           Sold out
         </button>
@@ -49,7 +52,7 @@ export default function Home() {
               Zip "promised weakness"
             </p>
             <p className={cls(gilroy.className, styles.description)}>
-              2775 UAH
+              {prices.zip} UAH
             </p>
             <button className={cls(gilroy.className, styles.button)}>
               Buy
@@ -62,7 +65,7 @@ export default function Home() {
               Pants "fake blood"
             </p>
             <p className={cls(gilroy.className, styles.description)}>
-              2775 UAH
+              {prices.pants} UAH
             </p>
             <button className={cls(gilroy.className, styles.button)}>
               Buy
@@ -74,7 +77,9 @@ export default function Home() {
           <p className={cls(gilroy.className, styles.description)}>
             Patched Hoodie "promised weakness"
           </p>
-          <p className={cls(gilroy.className, styles.description)}>2775 UAH</p>
+          <p className={cls(gilroy.className, styles.description)}>
+            {prices.patchedHoodie} UAH
+          </p>
           <button className={cls(gilroy.className, styles.button)}>Buy</button>
         </a>
       </section>
