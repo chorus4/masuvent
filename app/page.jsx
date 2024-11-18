@@ -1,3 +1,5 @@
+'use client'
+
 import cls from 'classname'
 import { Girassol } from 'next/font/google'
 import localFont from 'next/font/local'
@@ -22,7 +24,7 @@ export default function Home() {
       <a
         href={false ? '/buy/hoodie' : ''}
         className={styles.container}
-        disabled
+        onClick={e => e.preventDefault()}
       >
         {/* <h1 className={cls(girassol.className, styles.header)}>
           NEW DROP AVAILABLE
@@ -46,7 +48,7 @@ export default function Home() {
           DROP ALREADY AVAILABLE
         </h1> */}
         <div className={styles.firstRow}>
-          <a href='/buy/zip'>
+          <a href={false ? '/buy/zip' : ''} onClick={e => e.preventDefault()}>
             <Image className={styles.image} src={Zip} />
             <p className={cls(gilroy.className, styles.description)}>
               Zip "promised weakness"
@@ -54,8 +56,8 @@ export default function Home() {
             <p className={cls(gilroy.className, styles.description)}>
               {prices.zip} UAH
             </p>
-            <button className={cls(gilroy.className, styles.button)}>
-              Buy
+            <button disabled className={cls(gilroy.className, styles.button)}>
+              Sold out
             </button>
           </a>
 

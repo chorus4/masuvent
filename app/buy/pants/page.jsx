@@ -114,8 +114,8 @@ export default function Hoodie() {
           <br /> "fake blood"
         </h2>
         <p className={styles.material}>
-          <span>Материал: Хлопок 100%, 360 плотность,</span>
-          <span>премиальный футер трехнитка с начесом</span>
+          <span>Материал: Хлопок 100%, 360 плотность,&nbsp;</span>
+          <span>премиальный футер трехнитка с начесом&nbsp;</span>
           <br />
 
           {/* <span>Material: японский</span>
@@ -125,13 +125,13 @@ export default function Hoodie() {
         </p>
 
         <p className={styles.descr}>
-          <span>Штаны широкие (выход 33см), теплые,</span>
-          <span>отлично подойдут на зимний</span>
-          <span>сезон, также есть 2 кармана (спереди).</span>
-          <span>Штаны выполнены с очень</span>
-          <span>качественных и дорогих материалов,</span>
-          <span>так как нам важно чтобы ваша зима</span>
-          <span>прошла в тепле и с комфортом.</span>
+          <span>Штаны широкие (выход 33см), теплые,&nbsp;</span>
+          <span>отлично подойдут на зимний&nbsp;</span>
+          <span>сезон, также есть 2 кармана (спереди).&nbsp;</span>
+          <span>Штаны выполнены с очень&nbsp;</span>
+          <span>качественных и дорогих материалов,&nbsp;</span>
+          <span>так как нам важно чтобы ваша зима&nbsp;</span>
+          <span>прошла в тепле и с комфортом.&nbsp;</span>
         </p>
         <div className={styles.size}>
           <span>SIZE</span>

@@ -117,6 +117,17 @@
   }
 }
 
+@media (max-width: 800px) {
+  .rightSection {
+    padding: 15px;
+
+    p {
+      font-size: 24px;
+      display: block;
+    }
+  }
+}
+
 .size,
 .color {
   display: flex;
